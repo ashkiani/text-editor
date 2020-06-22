@@ -5,38 +5,55 @@ import OpenFiles from "../OpenFiles"
 export default class index extends Component {
     constructor() {
         super();
-        this.state = { openFileIds: [], openFiles: [] };
+        this.state = { openFilesData: [], openFiles: [] };
     }
 
-    closeFileFunction = async (id) => {
-        let arr = this.state.openFileIds;
-        if (arr.includes(id)) {
-            const newFileIds = [];
+    closeFileFunction = async (file) => {
+        let arr = this.state.openFilesData;
+        let includes = false;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].id == file.id) {
+                includes = true;
+                break;
+            }
+        }
+        if (includes) {
+            const newFilesData = [];
             for (let i = 0; i < arr.length; i++) {
-                if (arr[i] !== id) {
-                    newFileIds.push(arr[i]);
+                if (arr[i].id !== file.id) {
+                    newFilesData.push(arr[i]);
                 }
             }
-            if (newFileIds.length === 0) {
+            if (newFilesData.length === 0) {
                 this.setState({
-                    openFileIds: [],
+                    openFilesData: [],
                     openFiles: []
                 });
             } else {
                 this.setState({
-                    openFileIds: newFileIds,
-                    openFiles: <OpenFiles ids={newFileIds} closeFileFunction={this.closeFileFunction} />
+                    openFilesData: newFilesData,
+                    openFiles: <OpenFiles filesData={newFilesData} closeFileFunction={this.closeFileFunction} />
                 });
             }
         }
     }
-    openFileFunction = (id) => {
-        let arr = this.state.openFileIds;
-        if (!arr.includes(id)) {
-            arr = arr.concat([id]);
+    openFileFunction = (file) => {
+        console.log("Opening File");
+        console.log(file);
+        let arr = this.state.openFilesData;
+        let includes = false;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].id == file.id) {
+                includes = true;
+                break;
+            }
+        }
+
+        if (!includes) {
+            arr.push(file);
             this.setState({
-                openFileIds: arr,
-                openFiles: <OpenFiles ids={arr} closeFileFunction={this.closeFileFunction} />
+                openFilesData: arr,
+                openFiles: <OpenFiles filesData={arr} closeFileFunction={this.closeFileFunction} />
             });
         }
     };

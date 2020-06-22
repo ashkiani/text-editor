@@ -26,7 +26,6 @@ export default function Index(props) {
   const showFiles = async () => {
     const res = await fetch("/api/files");
     const data = await res.json();
-    console.log(data);
     setFiles([<button className="btn btn-success" key={0} data-toggle="modal" data-target="#dateModal"><i className="fa fa-plus-square" aria-hidden="true"></i> Add new</button>, <Files key={1} files={data} showFunction={showFiles} openFunction={props.openFunction} />]);
   };
     function handleInputChange(event) {

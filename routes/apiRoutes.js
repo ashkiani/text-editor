@@ -94,7 +94,7 @@ module.exports = function (app) {
         console.log(dbUser);
         console.log(dbUser.email);
         console.log(dbUser._id);
-        const newFile = new db.File({ name: fileName, owner: dbUser._id });
+        const newFile = new db.File({ name: fileName, owner: dbUser._id, content: "" });
         try {
           let addFile = await db.File.create(newFile);
           try {
@@ -174,13 +174,13 @@ module.exports = function (app) {
         let shUser = await db.User.findOne({ _id: file.shared[j].user });
         shared.push(shUser.email);
       }
-      let obj = { id: file._id, name: file.name, owner: file.owner.first_name + " " + file.owner.last_name, sharable: true, shared }
+      let obj = { id: file._id, name: file.name, owner: file.owner.first_name + " " + file.owner.last_name, sharable: true, shared, content: file.content }
       files.push(obj);
     }
     let sharedFiles = await db.File.find({ 'shared.user': dbUser._id });
     for (let i = 0; i < sharedFiles.length; i++) {
       dbUser = await db.User.findOne({ _id: sharedFiles[i].owner })
-      files.push({ id: sharedFiles[i]._id, name: sharedFiles[i].name, owner: dbUser.first_name + " " + dbUser.last_name, sharable: false, shared: null });
+      files.push({ id: sharedFiles[i]._id, name: sharedFiles[i].name, owner: dbUser.first_name + " " + dbUser.last_name, sharable: false, shared: null, content: file.content });
     }
     res.status(200).json(files);
   });
@@ -246,9 +246,9 @@ module.exports = function (app) {
                     { _id: fileId },
                     { $push: { shared: { user: dbShareUser._id, access: access } } },
                     { new: true }
-                  ).populate({path: 'owner'});
+                  ).populate({ path: 'owner' });
                   console.log("Saved as new");
-                  
+
                   let shared = [];
                   for (let j = 0; j < dbFile.shared.length; j++) {
                     let shUser = await db.User.findOne({ _id: dbFile.shared[j].user });
@@ -304,7 +304,7 @@ module.exports = function (app) {
         });
       } else {
         console.log("Blocked user's access to this file");
-        let file = await db.File.findOne({_id : fileId});
+        let file = await db.File.findOne({ _id: fileId });
         let shared = [];
         for (let j = 0; j < file.shared.length; j++) {
           let shUser = await db.User.findOne({ _id: file.shared[j].user });

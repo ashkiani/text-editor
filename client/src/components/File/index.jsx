@@ -37,7 +37,7 @@ export default function index(props) {
         <th scope="row">{index + 1}</th>
         <td>{name}</td>
         <td>{owner}</td>
-        <td><button onClick={() => openClick(id)}><i className="fa fa-folder-open" aria-hidden="true"></i></button></td>
+        <td><button onClick={() => openClick(props.data.file)}><i className="fa fa-folder-open" aria-hidden="true"></i></button></td>
         <td><FileShare file={props.data.file} /></td>
         <td><button onClick={() => deleteClick(id)}><i className="fa fa-trash" aria-hidden="true"></i></button></td>
       </tr>
@@ -49,7 +49,7 @@ export default function index(props) {
         <th scope="row">{index + 1}</th>
         <td>{name}</td>
         <td>{owner}</td>
-        <td><button onClick={() => openClick(id)}><i className="fa fa-folder-open" aria-hidden="true"></i></button></td>
+        <td><button onClick={() => openClick(props.data.file)}><i className="fa fa-folder-open" aria-hidden="true"></i></button></td>
         <td>Only the owner <br/>can share the file.</td>
         <td>Only the owner <br/>can delete the file.</td>
       </tr>
