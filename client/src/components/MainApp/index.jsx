@@ -12,7 +12,7 @@ export default class index extends Component {
         let arr = this.state.openFilesData;
         let includes = false;
         for (let i = 0; i < arr.length; i++) {
-            if (arr[i].id == file.id) {
+            if (arr[i].id === file.id) {
                 includes = true;
                 break;
             }
@@ -43,7 +43,7 @@ export default class index extends Component {
         let arr = this.state.openFilesData;
         let includes = false;
         for (let i = 0; i < arr.length; i++) {
-            if (arr[i].id == file.id) {
+            if (arr[i].id === file.id) {
                 includes = true;
                 break;
             }
