@@ -124,6 +124,20 @@ module.exports = function (app) {
     }
   });
 
+  app.post("/api/files/content", middleware.withAuth, async function (req, res) {
+    email = req.email;
+    const { fileId } = req.body;
+    try {
+      let file = await db.File.findOne({ _id: fileId });
+      res.status(200).send({ content: file.content });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({
+        error: "Internal error please try again",
+      });
+    }
+  });
+
   app.put("/api/files/content", middleware.withAuth, async function (req, res) {
     email = req.email;
     const { fileId, content } = req.body;
@@ -134,6 +148,7 @@ module.exports = function (app) {
             error: "Failed to update. Please try again",
           });
         }
+        console.log(doc);
         res.status(200).send(doc);
       });
     } catch (err) {
