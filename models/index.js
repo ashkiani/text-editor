@@ -51,7 +51,11 @@ const fileSchema = new Schema({
             unique: false,
             required: false
         }
-    }]
+    }],
+    content: {
+        type: String,
+        required: false
+    }
 });
 
 
