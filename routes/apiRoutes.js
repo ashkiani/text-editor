@@ -124,6 +124,26 @@ module.exports = function (app) {
     }
   });
 
+  app.put("/api/files/content", middleware.withAuth, async function (req, res) {
+    email = req.email;
+    const { fileId, content } = req.body;
+    try {
+      db.File.findOneAndUpdate({ _id: fileId }, { $set: { content: content } }, { new: true }, (err, doc) => {
+        if (err) {
+          res.status(500).json({
+            error: "Failed to update. Please try again",
+          });
+        }
+        res.status(200).send(doc);
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({
+        error: "Internal error please try again",
+      });
+    }
+  });
+
   app.delete("/api/files/delete", middleware.withAuth, async function (req, res) {
     console.log("DELETE request...");
     email = req.email;
