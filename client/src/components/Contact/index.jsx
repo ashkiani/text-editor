@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function index() {
+    const clk =  () => {alert("Something went wrong. Please send us an email at ashkiani@yahoo.com");};
     return (
         <div className="container">
             <div className="row">
@@ -22,7 +23,7 @@ export default function index() {
                         <label for="exampleFormControlTextarea1">Message</label>
                         <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-                    <button type="button" className="btn btn-primary" id="btnSubmit">Submit</button>
+                    <button type="button" className="btn btn-primary" id="btnSubmit" onClick={clk}>Submit</button>
                 </form>
 
             </div>
