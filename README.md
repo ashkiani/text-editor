@@ -1,14 +1,9 @@
-# text-editor
-# UNDER CONSTRUCTION
-
-
-
-####  
+# Siavash Notepad -Text Editor App  
 #### By Siavash Ashkiani
 ​
 ## Description
-Boilerplate for Password Protected File Manager Apps with MERN.
-This app is a template that you can use to create your own application. It includes some common features like user authentication, creating files or projects within the app and allowing the user to share those files with other users.
+Siavash Notepad -Text Editor App is a simple online text editor app which also allows users to share their note/text files.
+The app is open source and built on the [file-manager-auth-mern](https://github.com/ashkiani/file-manager-auth-mern) template, using the [create-file-manager-app](https://www.npmjs.com/package/create-file-manager-app) tool.
 
 ## Features
 ​
@@ -18,16 +13,7 @@ This app is a template that you can use to create your own application. It inclu
 * User can share their existing files with other users
 
 ## Setup/Installation Requirements
-### Option 1: using NPX (recommended)
-* Execute the following commands:
-```
-create-file-manager-app APP-NAME
-cd APP-NAME
-npm install
-```
-* Update the .env file located in the app's root folder for your settings
 
-### Option 2: Clone repo
 * Clone this repository.
 * Run npm install
 * Create a .env file in the root folder and add the following variables:
@@ -35,7 +21,6 @@ npm install
 AUTH_SECRET = YourSecretString
 MONGODB_URI = YourMongoDBConnection
 ```
-
 ​
 ## Known Bugs
 
@@ -55,7 +40,7 @@ Please email us for further questions at ashkiani@yahoo.com
 ​
 ## Contribution Guidlines 
 ​
-Direct link to site: 
+Direct link to site: https://siavash-notepad.herokuapp.com/
 
 ​
 ### License
